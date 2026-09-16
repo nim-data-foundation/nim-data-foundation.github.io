@@ -467,81 +467,170 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
     </p>
   </div>
 
-  <!-- Tableau valeur business -->
-  <h2 style="font-size:1.4rem;font-weight:800;color:#1a1a2e;margin-bottom:6px">Valeur business de Data Foundation — cas d'usage Natixis IM</h2>
-  <div style="margin-bottom:16px">
-    <input id="valeur-filter" type="text" placeholder="🔍 Filtrer table..." oninput="filterValeurTable(this.value)"
-      style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:.85rem;outline:none;box-sizing:border-box">
+  <!-- Valeur business — section graphique -->
+  <h2 style="font-size:1.4rem;font-weight:800;color:#1a1a2e;margin-bottom:6px">Valeur business — cas d'usage Natixis IM</h2>
+  <p style="color:#777;font-size:.9rem;margin-bottom:32px">9 dimensions de valeur mesurables, avant et après Data Foundation.</p>
+
+  <!-- KPI row -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px">
+    <div style="background:#1a1a2e;border-radius:14px;padding:22px 20px;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#C8A328;line-height:1">3j → min</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.4">Délai alerte Risk<br>→ visibilité Distribution</div>
+    </div>
+    <div style="background:#1a1a2e;border-radius:14px;padding:22px 20px;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#C8A328;line-height:1">840M€</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.4">Encours sécurisés<br>sur 47 clients</div>
+    </div>
+    <div style="background:#1a1a2e;border-radius:14px;padding:22px 20px;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#C8A328;line-height:1">70%</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.4">Taux d'adoption<br>des recommandations</div>
+    </div>
+    <div style="background:#1a1a2e;border-radius:14px;padding:22px 20px;text-align:center">
+      <div style="font-size:2rem;font-weight:900;color:#C8A328;line-height:1">0</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.4">Traitement manuel<br>sur les données produit</div>
+    </div>
   </div>
-  <div style="overflow-x:auto;border-radius:12px;border:1px solid #e0e0e0">
-    <table id="valeur-table" style="width:100%;border-collapse:collapse;font-size:.82rem">
-      <thead>
-        <tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
-          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:20%">Dimension business</th>
-          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:27%">Situation sans Data Foundation</th>
-          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:30%">Valeur apportée</th>
-          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:23%">Indicateur clé</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom:1px solid #f0f0f0">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Protection client / conformité</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Un fonds sous surveillance continue d'être vendu 3 jours après l'alerte Risk</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Statut Risk visible en temps réel sur la fiche client, avant toute recommandation commerciale</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Délai alerte → visibilité Distribution : 3 jours → quelques minutes</td>
-        </tr>
-        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Rétention d'encours</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Découverte du risque après coup, rappel client gênant, décision de sortie brutale</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Recommandation d'arbitrage automatique vers un fonds équivalent non flaggé</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">840M€ d'encours sécurisés sur 47 clients dont 12 institutionnels stratégiques</td>
-        </tr>
-        <tr style="border-bottom:1px solid #f0f0f0">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Cross-sell / upsell</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Opportunités de renforcement de position non détectées</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Signal automatique quand un fonds performe au-dessus du benchmark et que le client est sous-investi</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Taux d'adoption des recommandations (ex. 70% observé dans le cas d'usage)</td>
-        </tr>
-        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Multi-équipement</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Équipement produit du client jamais mesuré ni piloté</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Score de "whitespace produit" par client, calculé en continu</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Taux de multi-équipement produit par client</td>
-        </tr>
-        <tr style="border-bottom:1px solid #f0f0f0">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Pilotage produit (Investissement)</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Roadmap produit basée sur l'intuition, sans visibilité sur la demande réelle</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Signaux de demande non satisfaite remontés depuis Distribution</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Lancement de produit piloté par la donnée (ex. fonds ESG)</td>
-        </tr>
-        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Gestion du risque (Risk)</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Décision de suspension prise sans visibilité sur l'impact client</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Concentration d'encours par fonds/segment visible avant la décision</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Arbitrage progressif vs arrêt sec choisi en connaissance de cause</td>
-        </tr>
-        <tr style="border-bottom:1px solid #f0f0f0">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Fiabilité et rapidité de l'information</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Donnée dispersée dans 3 systèmes, réconciliée manuellement, avec risque d'erreur et de version obsolète</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Donnée automatiquement cataloguée, connectée et certifiée (Informatica) avant d'être activée par Data 360 — aucune ressaisie, aucun contrôle manuel</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Zéro traitement manuel ; même vérité produit disponible instantanément pour tous les métiers</td>
-        </tr>
-        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Productivité commerciale</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Recherche manuelle dans 3 systèmes, rédaction de mails/scripts à chaque cas</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Tâches, séquences et briefs générés automatiquement par Agentforce</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Temps commercial récupéré par cas traité</td>
-        </tr>
-        <tr>
-          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Scalabilité organisationnelle</td>
-          <td style="padding:14px 16px;color:#555;vertical-align:top">Chaque pays/entité gère sa propre vérité produit</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Golden Record unique, cohérent multi-org / multi-pays</td>
-          <td style="padding:14px 16px;color:#333;vertical-align:top">Zéro divergence de statut produit entre entités du groupe</td>
-        </tr>
-      </tbody>
-    </table>
+
+  <!-- Cards 3x3 -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:60px">
+
+    <!-- Card 1 -->
+    <div style="border-radius:14px;border:1.5px solid #BBDEFB;background:#fff;overflow:hidden">
+      <div style="background:#1565C0;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">🛡️</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Protection client<br>/ conformité</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Un fonds sous surveillance continue d'être vendu 3 jours après l'alerte Risk</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Statut Risk visible en temps réel sur la fiche client, avant toute recommandation</p>
+        <div style="background:#EEF3FF;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#1565C0;font-weight:600">📊 3 jours → quelques minutes</div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div style="border-radius:14px;border:1.5px solid #C8E6C9;background:#fff;overflow:hidden">
+      <div style="background:#2e7d32;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">💰</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Rétention<br>d'encours</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Découverte du risque après coup, rappel client gênant, décision de sortie brutale</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Recommandation d'arbitrage automatique vers un fonds équivalent non flaggé</p>
+        <div style="background:#E8F5E9;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#2e7d32;font-weight:600">📊 840M€ sécurisés sur 47 clients</div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div style="border-radius:14px;border:1.5px solid #FFE0B2;background:#fff;overflow:hidden">
+      <div style="background:#E65100;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">📈</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Cross-sell<br>/ upsell</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Opportunités de renforcement de position non détectées</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Signal automatique quand un fonds performe au-dessus du benchmark et que le client est sous-investi</p>
+        <div style="background:#FFF3E0;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#E65100;font-weight:600">📊 70% taux d'adoption</div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div style="border-radius:14px;border:1.5px solid #E1BEE7;background:#fff;overflow:hidden">
+      <div style="background:#6A1B9A;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">🧩</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Multi-<br>équipement</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Équipement produit du client jamais mesuré ni piloté</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Score de "whitespace produit" par client, calculé en continu</p>
+        <div style="background:#F3E5F5;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#6A1B9A;font-weight:600">📊 Taux de multi-équipement piloté</div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div style="border-radius:14px;border:1.5px solid #B2EBF2;background:#fff;overflow:hidden">
+      <div style="background:#00695C;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">🚀</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Pilotage produit<br>(Investissement)</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Roadmap basée sur l'intuition, sans visibilité sur la demande réelle</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Signaux de demande non satisfaite remontés depuis Distribution</p>
+        <div style="background:#E0F2F1;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#00695C;font-weight:600">📊 Lancement piloté par la donnée (ex. fonds ESG)</div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div style="border-radius:14px;border:1.5px solid #FFCDD2;background:#fff;overflow:hidden">
+      <div style="background:#b71c1c;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">⚠️</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Gestion du<br>risque (Risk)</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Décision de suspension prise sans visibilité sur l'impact client</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Concentration d'encours par fonds/segment visible avant la décision</p>
+        <div style="background:#FFEBEE;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#b71c1c;font-weight:600">📊 Arbitrage progressif vs arrêt sec</div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div style="border-radius:14px;border:1.5px solid #C5CAE9;background:#fff;overflow:hidden">
+      <div style="background:#283593;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">✅</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Fiabilité de<br>l'information</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Donnée dispersée dans 3 systèmes, réconciliée manuellement, risque d'erreur</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Donnée cataloguée, connectée et certifiée — aucune ressaisie, aucun contrôle manuel</p>
+        <div style="background:#E8EAF6;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#283593;font-weight:600">📊 Zéro traitement manuel</div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div style="border-radius:14px;border:1.5px solid #FFF9C4;background:#fff;overflow:hidden">
+      <div style="background:#F57F17;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">⚡</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Productivité<br>commerciale</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Recherche manuelle dans 3 systèmes, rédaction de mails/scripts à chaque cas</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Tâches, séquences et briefs générés automatiquement par Agentforce</p>
+        <div style="background:#FFFDE7;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#F57F17;font-weight:600">📊 Temps commercial récupéré par cas</div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div style="border-radius:14px;border:1.5px solid #CFD8DC;background:#fff;overflow:hidden">
+      <div style="background:#37474F;padding:14px 18px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.4rem">🌐</span>
+        <div style="font-size:.8rem;font-weight:800;color:#fff;line-height:1.3">Scalabilité<br>organisationnelle</div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="font-size:.7rem;font-weight:700;color:#e53935;margin-bottom:4px">✗ Sans</div>
+        <p style="font-size:.78rem;color:#555;margin:0 0 12px;line-height:1.5">Chaque pays/entité gère sa propre vérité produit</p>
+        <div style="font-size:.7rem;font-weight:700;color:#2e7d32;margin-bottom:4px">✓ Avec</div>
+        <p style="font-size:.78rem;color:#333;margin:0 0 14px;line-height:1.5">Golden Record unique, cohérent multi-org / multi-pays</p>
+        <div style="background:#ECEFF1;border-radius:8px;padding:8px 12px;font-size:.72rem;color:#37474F;font-weight:600">📊 Zéro divergence entre entités du groupe</div>
+      </div>
+    </div>
+
   </div>
-  <div style="height:60px"></div>
+  <div style="height:40px"></div>
 
 </section>
 
