@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIM-OS — Customer 360 Story | Natixis Investment Managers</title>
+<style>
+#pw-gate{position:fixed;inset:0;background:#1a1a2e;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#pw-gate.hidden{display:none}
+.pw-box{background:#fff;border-radius:16px;padding:48px 40px;width:360px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.pw-logo{font-size:1.1rem;font-weight:800;color:#1a1a2e;letter-spacing:.05em;margin-bottom:6px}
+.pw-logo span{color:#C8A328}
+.pw-title{font-size:1rem;color:#555;margin-bottom:28px;line-height:1.5}
+.pw-input{width:100%;padding:12px 16px;border:2px solid #e0e0e0;border-radius:10px;font-size:1rem;outline:none;text-align:center;letter-spacing:.1em;font-family:inherit;transition:border-color .2s}
+.pw-input:focus{border-color:#1a1a2e}
+.pw-input.error{border-color:#e53935;animation:shake .3s}
+.pw-btn{margin-top:14px;width:100%;padding:13px;border-radius:10px;border:none;background:#1a1a2e;color:#fff;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.pw-btn:hover{background:#2e2e4e}
+.pw-error{margin-top:10px;font-size:.8rem;color:#e53935;min-height:18px}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:#fff;color:#1a1a1a;line-height:1.65;overflow-x:hidden}
+
+/* ── HEADER ── */
+#site-header{
+  position:sticky;top:0;z-index:200;
+  background:#fff;border-bottom:1px solid #e8e8e8;
+  padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+.hd-title{font-size:1.1rem;font-weight:800}
+.hd-title span{color:#E65100}
+.hd-sub{font-size:.78rem;color:#888;margin-top:2px}
+.hd-sub b{color:#E65100}
+.hd-chapter{font-size:.75rem;color:#aaa;font-style:italic}
+
+/* ── LAYOUT ── */
+.layout{display:flex;min-height:100vh}
+
+/* LEFT: story */
+.story-panel{
+  flex:0 0 45%;max-width:45%;
+  padding:0;border-right:1px solid #eee}
+
+/* RIGHT: sticky diagram */
+.diagram-panel{
+  flex:0 0 55%;max-width:55%;
+  position:sticky;top:57px;height:calc(100vh - 57px);
+  overflow:hidden;background:#F7F7F7}
+
+/* ── STORY CHAPTERS ── */
+.ch{
+  padding:48px 40px;border-bottom:1px solid #eee;
+  min-height:70vh;display:flex;flex-direction:column;justify-content:center}
+.ch-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+  padding:3px 12px;border-radius:20px;margin-bottom:14px}
+.lbl-unlock  {background:#EEF3FF;color:#1565C0}
+.lbl-trust   {background:#E8F5F2;color:#00695C}
+.lbl-activate{background:#FEF0EA;color:#BF360C}
+.ch-num{font-size:.68rem;color:#bbb;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px}
+.ch h2{font-size:1.55rem;font-weight:800;color:#111;margin-bottom:16px;line-height:1.25}
+.ch-lead{font-size:.95rem;color:#666;font-style:italic;
+  border-left:3px solid #E65100;padding-left:14px;margin-bottom:20px;line-height:1.6}
+.ch p{font-size:.92rem;color:#333;margin-bottom:14px;line-height:1.75}
+.ch h3{font-size:.95rem;font-weight:700;color:#111;margin:22px 0 10px}
+.ch ul{padding-left:0;margin-bottom:16px}
+.ch ul li{list-style:none;padding:7px 0;border-bottom:1px solid #f0f0f0;
+  font-size:.88rem;color:#444;display:flex;gap:10px;line-height:1.55}
+.ch ul li::before{content:'◆';color:#E65100;font-size:.55rem;margin-top:5px;flex-shrink:0}
+.ch ul li:last-child{border-bottom:none}
+.steps{list-style:none;padding:0;margin-bottom:20px}
+.steps li{display:flex;gap:12px;padding:12px 14px;background:#fafafa;
+  border:1px solid #eee;border-radius:8px;margin-bottom:8px}
+.steps .sn{min-width:26px;height:26px;border-radius:50%;background:#1E0E4E;
+  color:#fff;font-size:.75rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.steps .sb strong{display:block;font-size:.85rem;color:#111;margin-bottom:3px}
+.steps .sb span{font-size:.8rem;color:#666;line-height:1.5}
+.keryan{
+  background:linear-gradient(135deg,#1E0E4E,#3D1A78);
+  border-radius:10px;padding:20px 24px;margin-top:24px;
+  border-left:4px solid #C8A328}
+.keryan .kh{font-size:.62rem;font-weight:800;letter-spacing:.15em;
+  text-transform:uppercase;color:#C8A328;margin-bottom:8px}
+.keryan p{color:rgba(255,255,255,.82);font-size:.88rem;line-height:1.7;margin-bottom:0}
+.keryan p+p{margin-top:8px}
+
+/* ── INTRO ── */
+#intro{
+  min-height:100vh;background:linear-gradient(145deg,#1E0E4E,#3D1A78,#6B2FA0);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 40px;color:#fff}
+.intro-nim{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#C8A328;margin-bottom:16px;opacity:.9}
+.intro-h1{font-size:2.6rem;font-weight:800;line-height:1.15;margin-bottom:10px}
+.intro-h1 span{color:#E8C040}
+.intro-sub{font-size:1rem;color:rgba(255,255,255,.7);max-width:400px;
+  margin-bottom:36px;line-height:1.7}
+.intro-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.pill{padding:7px 20px;border-radius:24px;font-weight:700;font-size:.78rem;
+  letter-spacing:.05em;text-transform:uppercase}
+.p-unlock  {background:#1565C0;color:#fff}
+.p-trust   {background:#00695C;color:#fff}
+.p-activate{background:#BF360C;color:#fff}
+.intro-desc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;padding:22px 26px;font-size:.88rem;line-height:1.75;
+  color:rgba(255,255,255,.78);margin-bottom:36px}
+.intro-desc p{margin-bottom:10px}
+.intro-desc p:last-child{margin-bottom:0}
+.btn-start{display:inline-flex;align-items:center;gap:8px;
+  background:#C8A328;color:#1E0E4E;font-weight:800;font-size:.9rem;
+  padding:14px 30px;border-radius:32px;text-decoration:none;
+  box-shadow:0 4px 20px rgba(200,163,40,.4);transition:all .2s}
+.btn-start:hover{background:#E8C040;transform:translateY(-2px)}
+.intro-credit{margin-top:32px;font-size:.72rem;color:rgba(255,255,255,.35)}
+
+/* ── DIAGRAM PANEL ── */
+.diagram-panel{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;overflow-y:auto}
+
+/* diagram state visibility */
+.dg-state{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:20px 28px;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s ease}
+.dg-state.active{opacity:1;pointer-events:auto;position:relative;inset:auto}
+
+/* SYSTEM CARD (matches original style) */
+.sc{
+  background:#fff;border:1px solid #ddd;border-radius:8px;
+  min-width:130px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);
+  transition:box-shadow .3s,border-color .3s}
+.sc:hover{box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.sc-head{display:flex;justify-content:space-between;align-items:center;
+  padding:9px 11px;font-weight:700;font-size:.82rem}
+.sc-logo{font-size:.9rem}
+.sc-row{padding:5px 11px;font-size:.72rem;border-top:1px solid #f0f0f0}
+.sc-holds{background:#EEF5FF;color:#1565C0;font-weight:600}
+.sc-id   {background:#F5F5F5;color:#666}
+.sc-eid  {background:#FFF9E3;color:#C8A328;font-weight:800;text-align:center;border-top:1px solid #f0e8b0}
+
+/* source grid */
+.src-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;margin-bottom:8px}
+
+/* dashed connection */
+.dash-line{border:none;border-top:2px dashed #FFAB91;width:1px;
+  position:absolute;transform-origin:top center}
+.pipe-down{
+  width:2px;background:linear-gradient(180deg,#FFAB91,#E65100);
+  margin:0 auto;position:relative}
+.pipe-down::after{
+  content:'▼';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+  color:#E65100;font-size:.7rem}
+
+/* connector lines SVG */
+.connectors{width:100%;height:60px;position:relative;overflow:visible;margin-bottom:4px}
+.connectors svg{width:100%;height:100%;overflow:visible}
+
+/* MuleSoft card */
+.mule-card{
+  background:#fff;border:2px solid #E65100;border-radius:10px;
+  padding:14px 20px;text-align:center;min-width:160px;
+  box-shadow:0 4px 16px rgba(230,81,0,.15)}
+.mule-logo{font-size:1.6rem;margin-bottom:6px}
+.mule-name{font-size:.95rem;font-weight:800;color:#E65100}
+.mule-sub{font-size:.7rem;color:#888;margin-top:3px}
+.section-label{font-size:.62rem;font-weight:800;letter-spacing:.15em;
+  text-transform:uppercase;color:#bbb;margin:10px 0 8px;text-align:center}
+
+/* Informatica tools */
+.info-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-bottom:10px}
+.info-card{background:#fff;border:1px solid #ddd;border-radius:8px;
+  padding:10px 12px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.ic-icon{font-size:1.1rem;margin-bottom:4px}
+.ic-label{font-size:.68rem;font-weight:700;color:#00695C}
+.ic-sub{font-size:.62rem;color:#888;margin-top:2px}
+
+/* MDM Hub */
+.mdm-wrap{background:#fff;border:1px solid #ddd;border-radius:10px;
+  padding:14px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.mdm-title{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:#6B2FA0;margin-bottom:10px;text-align:center}
+.mdm-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.mdm-step{background:#F8F5FF;border:1px solid #E0D4F5;border-radius:6px;
+  padding:8px 6px;text-align:center;transition:all .4s}
+.mdm-step.lit{background:#6B2FA0;border-color:#6B2FA0}
+.mdm-step.lit .ms-icon,.mdm-step.lit .ms-name,.mdm-step.lit .ms-sub{color:#fff!important}
+.ms-icon{font-size:1rem;margin-bottom:3px}
+.ms-name{font-size:.68rem;font-weight:700;color:#6B2FA0}
+.ms-sub {font-size:.6rem;color:#999;margin-top:1px}
+.golden-badge{
+  background:linear-gradient(135deg,#FFF8E1,#FFF3CC);
+  border:2px solid #C8A328;border-radius:8px;
+  padding:10px 16px;text-align:center;
+  animation:glow 2.5s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(200,163,40,0)}
+  50%{box-shadow:0 0 14px 3px rgba(200,163,40,.3)}}
+.gb-label{font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:#C8A328;margin-bottom:3px}
+.gb-id{font-size:1rem;font-weight:800;color:#C8A328}
+
+/* Data platforms */
+.dp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+.dp-card{background:#fff;border:1px solid #ddd;border-radius:8px;
+  padding:10px 12px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.dp-icon{font-size:1.1rem;margin-bottom:4px}
+.dp-name{font-size:.78rem;font-weight:700;color:#111}
+.dp-sub{font-size:.65rem;color:#888;margin-top:2px}
+.dp-id{font-size:.65rem;background:#FFF9E3;color:#C8A328;font-weight:700;
+  padding:2px 6px;border-radius:3px;margin-top:5px;display:inline-block}
+
+/* NIM-OS profile */
+.profile-card{
+  background:linear-gradient(135deg,#1E0E4E,#3D1A78);
+  border-radius:12px;padding:18px;width:100%;
+  border:1px solid rgba(107,47,160,.5)}
+.pc-uuid{font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:#C8A328;margin-bottom:4px;opacity:.85}
+.pc-name{font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px}
+.pc-link{font-size:.65rem;color:rgba(255,255,255,.4);font-family:monospace;margin-bottom:12px}
+.pc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.pc-tag{font-size:.65rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;padding:3px 8px;color:rgba(255,255,255,.7)}
+.pc-items{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.pci{background:rgba(255,255,255,.06);border-radius:6px;
+  padding:6px 9px;font-size:.7rem;color:rgba(255,255,255,.6)}
+.pci-icon{display:block;font-size:.8rem;margin-bottom:2px}
+
+/* Agentforce */
+.agent-wrap{background:#fff;border:2px solid #FFAB91;border-radius:12px;
+  padding:14px;width:100%;box-shadow:0 4px 16px rgba(191,54,12,.1)}
+.agent-top{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.agent-brain{background:#FEF0EA;border-radius:8px;padding:12px;text-align:center}
+.ab-i{font-size:1.5rem;margin-bottom:4px}
+.ab-n{font-size:.8rem;font-weight:800;color:#BF360C}
+.ab-s{font-size:.65rem;color:#888;margin-top:2px}
+.agent-trust{background:#F5F5F5;border-radius:8px;padding:12px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.at-i{font-size:1.1rem;margin-bottom:4px}
+.at-n{font-size:.75rem;font-weight:700;color:#444}
+.at-s{font-size:.62rem;color:#888;margin-top:2px}
+.agent-channels{margin-bottom:8px}
+.ach-label{font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:#bbb;margin-bottom:5px}
+.ach-pills{display:flex;flex-wrap:wrap;gap:5px}
+.ach-pill{font-size:.65rem;background:#fff;border:1px solid #e0e0e0;
+  border-radius:5px;padding:3px 9px;color:#444;
+  animation:chblink 3s ease-in-out infinite}
+.ach-pill:nth-child(1){animation-delay:0s}
+.ach-pill:nth-child(2){animation-delay:.5s}
+.ach-pill:nth-child(3){animation-delay:1s}
+.ach-pill:nth-child(4){animation-delay:1.5s}
+.ach-pill:nth-child(5){animation-delay:2s}
+@keyframes chblink{0%,100%{background:#fff;color:#444}
+  40%{background:#FEF0EA;color:#BF360C;border-color:#FFAB91}}
+.agent-apps{display:flex;flex-wrap:wrap;gap:5px}
+.app-chip{font-size:.65rem;background:#EEF3FF;border:1px solid #BBDEFB;
+  border-radius:5px;padding:3px 9px;color:#1565C0;font-weight:600}
+.fabric-note{background:#FEF0EA;border-radius:6px;padding:8px 12px;
+  font-size:.72rem;color:#BF360C;margin-top:8px;text-align:center;font-weight:600}
+
+/* animated flow dots on connectors */
+.flow-dots{position:relative;height:32px;width:100%;display:flex;justify-content:center}
+.flow-dots .dot{
+  position:absolute;width:8px;height:8px;border-radius:50%;
+  background:#E65100;top:12px;
+  animation:fdot 2s linear infinite}
+.flow-dots .dot:nth-child(2){animation-delay:.66s}
+.flow-dots .dot:nth-child(3){animation-delay:1.32s}
+@keyframes fdot{
+  0%  {left:10%;opacity:0}
+  5%  {opacity:1}
+  95% {opacity:1}
+  100%{left:90%;opacity:0}}
+
+/* vertical flow line */
+.vflow{display:flex;justify-content:center;margin:4px 0}
+.vflow-line{width:2px;height:28px;background:linear-gradient(180deg,#FFAB91,#E65100);
+  position:relative}
+.vflow-arrow{text-align:center;color:#E65100;font-size:.7rem;margin-top:-2px}
+
+/* chapter nav in diagram */
+.dg-chapter-label{
+  position:absolute;top:16px;right:16px;
+  font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:#ccc;background:#fff;padding:4px 10px;border-radius:12px;
+  border:1px solid #eee}
+
+/* dim class */
+.dimmed{opacity:.25;filter:grayscale(.5)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .layout{flex-direction:column}
+  .story-panel,.diagram-panel{flex:none;max-width:100%;width:100%}
+  .diagram-panel{position:relative;top:0;height:auto;min-height:500px}
+  .dg-state{position:relative;inset:auto}
+}
+
+/* ── NEW DIAGRAM LAYOUT ─────────────────────────────── */
+.src-row{display:flex;gap:5px;width:100%;margin-bottom:8px}
+.sc-h{flex:1;min-width:0;background:#fff;border:1px solid #ddd;border-radius:6px;overflow:hidden}
+.sch-head{display:flex;justify-content:space-between;align-items:center;padding:6px 8px}
+.sch-name{font-size:.68rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sch-row{padding:3px 8px;font-size:.6rem;border-top:1px solid #f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sch-holds{background:#EEF5FF;color:#1565C0;font-weight:600}
+.sch-id{background:#F5F5F5;color:#666}
+.sch-eid{background:#FFF9E3;color:#C8A328;font-weight:800;text-align:center}
+.mid-row{display:flex;gap:6px;width:100%;margin-top:34px;align-items:stretch}
+.sec-box{border:1px solid #e0e0e0;border-radius:8px;background:#fff;overflow:hidden;transition:opacity .4s}
+.sec-header{display:flex;align-items:center;gap:5px;padding:6px 10px;border-bottom:1px solid #f0f0f0;font-size:.55rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#888}
+.sec-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ghost{opacity:.18;pointer-events:none}
+.app-int{flex:0 0 140px;min-width:0}
+.mule-sec{display:flex;flex-direction:column;align-items:center;padding:12px 8px;gap:3px;text-align:center}
+.mule-name-lg{font-weight:800;color:#E65100;font-size:.85rem}
+.mule-sub-lg{font-size:.58rem;color:#888}
+.mule-fabric{margin-top:6px;background:#FEF0EA;border-radius:5px;padding:6px 8px;text-align:left;width:100%}
+.data-mgmt{flex:1;min-width:0}
+.dm-inner{display:flex;min-height:150px}
+.dm-left{flex:0 0 47%;border-right:1px solid #f0f0f0;padding:7px;display:flex;flex-direction:column;gap:5px;transition:opacity .4s}
+.dm-right{flex:1;padding:7px;display:flex;flex-direction:column;gap:3px;transition:opacity .4s}
+.info-tool-card{border:1px solid #E65100;border-radius:5px;padding:5px 7px}
+.itc-name{font-size:.6rem;font-weight:800;color:#E65100}
+.itc-sub{font-size:.55rem;color:#888;margin-top:1px}
+.mdm-pill{background:#E65100;color:#fff;font-size:.5rem;font-weight:800;padding:2px 6px;border-radius:8px;margin-left:auto;flex-shrink:0}
+.mdm-step-v{display:flex;align-items:center;gap:6px;padding:4px 5px;border-radius:4px;border-bottom:1px solid #f5f5f5;transition:background .3s}
+.mdm-step-v:last-child{border-bottom:none}
+.msv-name{font-size:.64rem;font-weight:700;color:#6B2FA0}
+.msv-sub{font-size:.55rem;color:#aaa}
+.golden-bar{background:linear-gradient(90deg,#FFF8E1,#FFF3CC);border:1px solid #C8A328;border-radius:5px;padding:5px 8px;text-align:center;margin-top:4px;animation:glow 2.5s ease-in-out infinite}
+.gb-label-sm{font-size:.5rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#C8A328}
+.gb-id-sm{font-size:.78rem;font-weight:800;color:#C8A328}
+.analytics{flex:0 0 128px;min-width:0}
+.an-inner{padding:7px;display:flex;flex-direction:column;gap:5px}
+.dp-card-sm{border:1px solid #ddd;border-radius:5px;padding:6px 9px}
+.dpc-id{font-size:.55rem;background:#FFF9E3;color:#C8A328;font-weight:700;padding:1px 5px;border-radius:3px;margin-top:4px;display:inline-block}
+.d360-sec{border:2px solid #E65100;border-radius:10px;width:100%;margin-top:30px;overflow:hidden;background:#fff}
+.d360-header{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid #f0f0f0}
+.d360-label{font-size:.75rem;font-weight:800;color:#1565C0}
+.d360-desc{font-size:.58rem;color:#666;flex:1;line-height:1.5}
+.af-sec{border:2px solid #FFAB91;border-radius:10px;width:100%;overflow:hidden;background:#fff}
+.af-header{background:#FEF0EA;padding:7px 14px;display:flex;align-items:center;gap:6px}
+.af-label{font-size:.72rem;font-weight:800;color:#BF360C}
+.af-inner{padding:10px 14px;display:flex;flex-direction:column;gap:6px}
+.af-engine{display:flex;align-items:center;gap:6px;padding:7px 12px;background:#F8F8F8;border-radius:6px}
+.afe-name{font-size:.75rem;font-weight:800;color:#1565C0}
+.afe-trust{font-size:.56rem;color:#888;margin-left:auto;white-space:nowrap}
+.sf-apps-label{font-size:.5rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0;text-align:center}
+.sf-apps{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.sf-app{font-size:.6rem;background:#EEF3FF;border:1px solid #BBDEFB;border-radius:4px;padding:2px 8px;color:#1565C0;font-weight:600}
+.channels{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.ch-pill{font-size:.57rem;background:#fff;border:1px solid #e0e0e0;border-radius:4px;padding:2px 7px;color:#555}
+.auto-zone{border:2px dashed #9C27B0;border-radius:12px;padding:10px;margin-top:8px;position:relative}
+.auto-zone-label{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#F7F7F7;padding:0 10px;font-size:.52rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#9C27B0;white-space:nowrap}
+.hd-tabs{display:flex;gap:0;align-items:center;background:rgba(0,0,0,.25);border-radius:10px;padding:3px}
+.hd-tab{padding:8px 20px;border-radius:8px;border:none;background:transparent;color:rgba(255,255,255,.65);font-size:.8rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:inherit;letter-spacing:.01em;white-space:nowrap}
+.hd-tab.active{background:#fff;color:#1a1a2e;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.hd-tab:hover:not(.active){background:rgba(255,255,255,.12);color:#fff}
+#valeur-page{display:none;min-height:calc(100vh - 70px);padding:60px 80px;max-width:900px;margin:0 auto}
+#valeur-page h1{font-size:2rem;font-weight:800;color:#1a1a2e;margin-bottom:8px}
+#valeur-page .valeur-sub{color:#555;font-size:1rem;margin-bottom:48px}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-logo">NIM-OS <span>Story</span></div>
+    <p class="pw-title">Natixis Investment Managers<br>Accès réservé — veuillez saisir le mot de passe</p>
+    <input class="pw-input" id="pw-input" type="password" placeholder="••••••••" maxlength="30"
+      onkeydown="if(event.key==='Enter')checkPw()">
+    <button class="pw-btn" onclick="checkPw()">Accéder →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div>
+    <div class="hd-title">NIM-OS <span>Story</span></div>
+    <div class="hd-sub">De la <b>Donnée Silotée</b> à la <b>Décision Coordonnée</b> — Préparé par Maxime Rivals</div>
+  </div>
+  <div class="hd-tabs">
+    <button class="hd-tab active" id="tab-story" onclick="switchTab('story')">📖 Cas d'usage NIM</button>
+    <button class="hd-tab" id="tab-valeur" onclick="switchTab('valeur')">💡 Valeur Data Foundation</button>
+  </div>
+  <div class="hd-chapter" id="hd-ch">Introduction</div>
+</header>
+
+<!-- VALEUR PAGE -->
+<section id="valeur-page">
+  <h1>Data Foundation — Proposition de valeur</h1>
+  <p class="valeur-sub">Trois produits, trois rôles complémentaires — une seule plateforme pour certifier, connecter et activer la donnée.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:48px">
+
+    <!-- Informatica -->
+    <div style="border-radius:14px;border:2px solid #00695C;padding:28px 24px;background:#F9FFFE">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:42px;height:42px;border-radius:10px;background:#00695C;display:flex;align-items:center;justify-content:center;font-size:1.3rem">🔐</div>
+        <div>
+          <div style="font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#00695C">Informatica</div>
+          <div style="font-size:1.1rem;font-weight:800;color:#1a1a2e">Certifier</div>
+        </div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:.7rem;font-weight:700;color:#00695C;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Rôle</div>
+        <p style="font-size:.85rem;color:#333;line-height:1.6;margin:0">Gouverne, catalogue et fiabilise la donnée à la source — VNI, VaR, encours — avant qu'elle ne soit utilisée ailleurs.</p>
+      </div>
+      <div>
+        <div style="font-size:.7rem;font-weight:700;color:#00695C;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Proposition de valeur</div>
+        <p style="font-size:.85rem;color:#333;line-height:1.6;margin:0">Garantit que chaque donnée produit est correctement identifiée, traçable et vérifiée — <strong>la confiance commence par l'identité et la qualité.</strong></p>
+      </div>
+    </div>
+
+    <!-- MuleSoft -->
+    <div style="border-radius:14px;border:2px solid #1565C0;padding:28px 24px;background:#F5F8FF">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:42px;height:42px;border-radius:10px;background:#1565C0;display:flex;align-items:center;justify-content:center;font-size:1.3rem">⚡</div>
+        <div>
+          <div style="font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1565C0">MuleSoft</div>
+          <div style="font-size:1.1rem;font-weight:800;color:#1a1a2e">Connecter</div>
+        </div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:.7rem;font-weight:700;color:#1565C0;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Rôle</div>
+        <p style="font-size:.85rem;color:#333;line-height:1.6;margin:0">Relie en temps réel les systèmes cloisonnés — Risk, Investissement, Distribution — sans développement lourd ni réplication manuelle.</p>
+      </div>
+      <div>
+        <div style="font-size:.7rem;font-weight:700;color:#1565C0;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Proposition de valeur</div>
+        <p style="font-size:.85rem;color:#333;line-height:1.6;margin:0">Transforme une information qui mettait des jours à circuler en un flux instantané et bidirectionnel — <strong>la vitesse de circulation de l'information.</strong></p>
+      </div>
+    </div>
+
+    <!-- Data 360 -->
+    <div style="border-radius:14px;border:2px solid #BF360C;padding:28px 24px;background:#FFF8F5">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:42px;height:42px;border-radius:10px;background:#BF360C;display:flex;align-items:center;justify-content:center;font-size:1.3rem">🎯</div>
+        <div>
+          <div style="font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#BF360C">Data 360</div>
+          <div style="font-size:1.1rem;font-weight:800;color:#1a1a2e">Activer</div>
+        </div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:.7rem;font-weight:700;color:#BF360C;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Rôle</div>
+        <p style="font-size:.85rem;color:#333;line-height:1.6;margin:0">Unifie les données certifiées et connectées en un profil exploitable, croisé avec le client, directement dans Salesforce.</p>
+      </div>
+      <div>
+        <div style="font-size:.7rem;font-weight:700;color:#BF360C;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Proposition de valeur</div>
+        <p style="font-size:.85rem;color:#333;line-height:1.6;margin:0">Transforme des données techniques en décisions commerciales et en contexte fiable pour l'IA (Agentforce) — <strong>la seule brique qui rend la donnée actionnable pour les équipes métier.</strong></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Phrase de synthèse -->
+  <div style="background:#1a1a2e;border-radius:14px;padding:28px 36px;text-align:center;margin-bottom:56px">
+    <p style="font-size:1.05rem;color:#fff;line-height:1.8;margin:0">
+      <strong style="color:#C8A328">Informatica</strong> garantit que la donnée est juste,
+      <strong style="color:#C8A328">MuleSoft</strong> garantit qu'elle circule vite,
+      <strong style="color:#C8A328">Data 360</strong> garantit qu'elle devient actionnable.
+    </p>
+  </div>
+
+  <!-- Tableau valeur business -->
+  <h2 style="font-size:1.4rem;font-weight:800;color:#1a1a2e;margin-bottom:6px">Valeur business de Data Foundation — cas d'usage Natixis IM</h2>
+  <div style="margin-bottom:16px">
+    <input id="valeur-filter" type="text" placeholder="🔍 Filtrer table..." oninput="filterValeurTable(this.value)"
+      style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:.85rem;outline:none;box-sizing:border-box">
+  </div>
+  <div style="overflow-x:auto;border-radius:12px;border:1px solid #e0e0e0">
+    <table id="valeur-table" style="width:100%;border-collapse:collapse;font-size:.82rem">
+      <thead>
+        <tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:20%">Dimension business</th>
+          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:27%">Situation sans Data Foundation</th>
+          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:30%">Valeur apportée</th>
+          <th style="padding:12px 16px;text-align:left;font-weight:700;color:#333;width:23%">Indicateur clé</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Protection client / conformité</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Un fonds sous surveillance continue d'être vendu 3 jours après l'alerte Risk</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Statut Risk visible en temps réel sur la fiche client, avant toute recommandation commerciale</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Délai alerte → visibilité Distribution : 3 jours → quelques minutes</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Rétention d'encours</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Découverte du risque après coup, rappel client gênant, décision de sortie brutale</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Recommandation d'arbitrage automatique vers un fonds équivalent non flaggé</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">840M€ d'encours sécurisés sur 47 clients dont 12 institutionnels stratégiques</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Cross-sell / upsell</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Opportunités de renforcement de position non détectées</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Signal automatique quand un fonds performe au-dessus du benchmark et que le client est sous-investi</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Taux d'adoption des recommandations (ex. 70% observé dans le cas d'usage)</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Multi-équipement</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Équipement produit du client jamais mesuré ni piloté</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Score de "whitespace produit" par client, calculé en continu</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Taux de multi-équipement produit par client</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Pilotage produit (Investissement)</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Roadmap produit basée sur l'intuition, sans visibilité sur la demande réelle</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Signaux de demande non satisfaite remontés depuis Distribution</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Lancement de produit piloté par la donnée (ex. fonds ESG)</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Gestion du risque (Risk)</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Décision de suspension prise sans visibilité sur l'impact client</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Concentration d'encours par fonds/segment visible avant la décision</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Arbitrage progressif vs arrêt sec choisi en connaissance de cause</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Fiabilité et rapidité de l'information</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Donnée dispersée dans 3 systèmes, réconciliée manuellement, avec risque d'erreur et de version obsolète</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Donnée automatiquement cataloguée, connectée et certifiée (Informatica) avant d'être activée par Data 360 — aucune ressaisie, aucun contrôle manuel</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Zéro traitement manuel ; même vérité produit disponible instantanément pour tous les métiers</td>
+        </tr>
+        <tr style="border-bottom:1px solid #f0f0f0;background:#fafafa">
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Productivité commerciale</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Recherche manuelle dans 3 systèmes, rédaction de mails/scripts à chaque cas</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Tâches, séquences et briefs générés automatiquement par Agentforce</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Temps commercial récupéré par cas traité</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 16px;font-weight:700;color:#1a1a2e;vertical-align:top">Scalabilité organisationnelle</td>
+          <td style="padding:14px 16px;color:#555;vertical-align:top">Chaque pays/entité gère sa propre vérité produit</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Golden Record unique, cohérent multi-org / multi-pays</td>
+          <td style="padding:14px 16px;color:#333;vertical-align:top">Zéro divergence de statut produit entre entités du groupe</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="height:60px"></div>
+
+</section>
+
+<!-- INTRO (full width) -->
+<section id="intro" data-chapter="0">
+  <div class="intro-nim">Natixis Investment Managers — Plateforme NIM-OS</div>
+  <h1 class="intro-h1">Le Fonds qu'on a<br><span>Vendu 3 Jours de Trop</span></h1>
+  <p class="intro-sub">Comment Informatica, MuleSoft et Data 360 permettent aux départements Risk, Investissement et Distribution de coordonner des décisions éclairées, fiables et en temps réel.</p>
+  <div class="intro-pills">
+    <div class="pill p-unlock">① Identifier</div>
+    <div class="pill p-trust">② Intégrer</div>
+    <div class="pill p-activate">③ Activer</div>
+  </div>
+  <div class="intro-desc">
+    <p>Chez Natixis Investment Managers, trois métiers collaborent sur le cycle de vie d'un produit financier — mais avec des systèmes cloisonnés. <strong style="color:#fff">la Distribution</strong> est le seul département sur Salesforce. les départements <strong style="color:#fff">Risk</strong> et <strong style="color:#fff">Investissement</strong> opèrent eux dans des systèmes fermés qui ne lui parlent pas.</p>
+    <p><strong style="color:#C8A328">Cas d'usage fictif :</strong> Chez Natixis Investment Managers, trois métiers — Risk, Investissement et Distribution — travaillent sur un même produit financier sans partager leurs systèmes : ce cas d'usage montre comment Informatica, MuleSoft et Data 360 connectent ces métiers pour faire circuler l'information de risque et de performance jusqu'à Salesforce en temps réel, et inversement remonter les signaux de demande et d'exposition client vers Risk et Investissement — transformant une gouvernance data invisible en décisions commerciales et produit plus rapides et mieux informées.</p>
+  </div>
+  <a href="#ch1" class="btn-start">▶ Voir l'histoire</a>
+  <div class="intro-credit">Préparé par Maxime Rivals · Natixis Investment Managers</div>
+</section>
+
+<!-- SPLIT LAYOUT -->
+<div class="layout">
+
+  <!-- ═══ LEFT: STORY ═══ -->
+  <div class="story-panel">
+
+    <!-- Ch1 -->
+    <div class="ch" id="ch1" data-chapter="1">
+      <div class="ch-num">Chapitre 1</div>
+      <span class="ch-label lbl-unlock">Libérer</span>
+      <h2>Les 3 Jours de Trop</h2>
+      <p class="ch-lead">Trois équipes, un même fonds — trois systèmes qui ne se parlent pas.</p>
+      <h3>Lundi 9h — Équipe Risk</h3>
+      <p>Léa, analyste risque, reçoit l'alerte : le fonds <strong>NIM Obligataire Flexible</strong> dépasse son seuil de VaR sur trois séances consécutives. Elle acte la mise sous <strong>surveillance renforcée</strong> — décision consignée dans l'outil Risk, un système qui ne parle potentiellement pas aux autres.</p>
+      <h3>Lundi 14h — Équipe Investissement</h3>
+      <p>L'équipe gestion produit clôture son reporting mensuel : le même fonds affiche une <strong>sous-performance de -1,2% vs le benchmark</strong>. Une donnée de plus, dans un système de gestion d'actifs qui, lui aussi, potentiellement n'est pas diffusé.</p>
+      <h3>Mardi &amp; mercredi — Équipe Distribution</h3>
+      <ul>
+        <li>Un commercial relance un CGP intéressé et envoie une proposition sur ce fonds</li>
+        <li>Un autre le recommande à un institutionnel comme option de diversification</li>
+        <li>Personne ne sait que le département Risk l'a mis sous surveillance depuis 48h</li>
+        <li>Personne ne connaît la sous-performance Investissement non plus</li>
+      </ul>
+      <div class="keryan">
+        <div class="kh">⚠ Jeudi — Le problème remonte, trop tard</div>
+        <p>Le responsable Distribution l'apprend par mail, en copie d'une chaîne Risk ↔ Investissement. Il doit <strong style="color:#fff">rappeler deux clients</strong> à qui on vient de recommander un fonds sous surveillance.</p>
+        <p>La direction pose la question : <em>« Comment a-t-on pu vendre ça alors que Risk le savait depuis lundi ? »</em></p>
+      </div>
+    </div>
+
+    <!-- Ch2 -->
+    <div class="ch" id="ch2" data-chapter="2">
+      <div class="ch-num">Chapitre 2</div>
+      <span class="ch-label lbl-trust">Fiabiliser</span>
+      <h2>Un Fonds, Une Identité</h2>
+      <p class="ch-lead">Informatica garantit que les départements Risk, Investissement et Distribution parlent exactement du même fonds.</p>
+      <p>Avant d'intégrer les données, il faut résoudre un problème fondamental : chaque système identifie le fonds différemment. Ce <strong>« golden » Référentiel Produit</strong> est la fondation — sans lui, intégrer des données revient à connecter des références qui ne correspondent pas.</p>
+      <h3>Pipeline CLAIRE AI — 4 étapes</h3>
+      <ol class="steps">
+        <li><div class="sn">1</div><div class="sb"><strong>Ingestion — Mapping intelligent</strong><span>CLAIRE identifie les attributs produit dans chaque système (ISIN, code interne, libellé) et les mappe vers un modèle canonique fonds NIM.</span></div></li>
+        <li><div class="sn">2</div><div class="sb"><strong>Nettoyage &amp; Enrichissement</strong><span>Normalisation des libellés, validation ISIN, enrichissement avec classification AMF, benchmark officiel et caractéristiques réglementaires.</span></div></li>
+        <li><div class="sn">3</div><div class="sb"><strong>Déduplication — IA &amp; ML</strong><span>RK-NOF-001, AM-NOF-412 et SF-FOND-078 reconnus comme le même fonds malgré des codes différents.</span></div></li>
+        <li><div class="sn">4</div><div class="sb"><strong>Cadre de Confiance</strong><span>ISIN de référence, catégorie AMF, seuil VaR contractuel — les attributs de référence survivent depuis la source la plus fiable.</span></div></li>
+      </ol>
+      <div class="keryan">
+        <div class="kh">✓ Le Golden Record du NIM Obligataire Flexible</div>
+        <p>Trois identifiants sources convergent vers un référentiel unique. <strong style="color:#C8A328">ISIN canonique : FR0014-NIM-001.</strong> Les départements Risk, Investissement et Distribution parlent désormais du même fonds avec certitude.</p>
+      </div>
+    </div>
+
+    <!-- Ch3 -->
+    <div class="ch" id="ch3" data-chapter="3">
+      <div class="ch-num">Chapitre 3</div>
+      <span class="ch-label lbl-trust">Fiabiliser</span>
+      <h2>La Vérité Partagée Partout</h2>
+      <p class="ch-lead">Le Golden Record n'est pas un coffre-fort — c'est un hub vivant qui réécrit la vérité dans tous les systèmes sources.</p>
+      <p>Informatica transforme le MDM d'un référentiel statique en source active. L'identifiant canonique FR0014-NIM-001 et les attributs certifiés sont réinjectés dans chaque système source et disponibles pour l'analytique.</p>
+      <ul>
+        <li><strong>Réécriture opérationnelle :</strong> Risk, Asset Management et Salesforce CRM reçoivent le même identifiant produit — plus d'ambiguïté lors des échanges inter-équipes.</li>
+        <li><strong>Analytique :</strong> Le référentiel produit gouverné est disponible sur la Data Platform sans traitement manuel.</li>
+        <li><strong>Préparation réglementaire :</strong> Vue unique et auditable du fonds — prête MiFID II, PRIIPS, reporting AMF.</li>
+      </ul>
+      <div class="keryan">
+        <div class="kh">✓ Après réécriture</div>
+        <p>Les trois systèmes référencent désormais le même produit. Quand Risk consigne une alerte sur RK-NOF-001, tout le monde sait que c'est <em>FR0014-NIM-001</em> — le NIM Obligataire Flexible.</p>
+      </div>
+    </div>
+
+    <!-- Ch4 -->
+    <div class="ch" id="ch4" data-chapter="4">
+      <div class="ch-num">Chapitre 4</div>
+      <span class="ch-label lbl-unlock">Libérer</span>
+      <h2>L'Information sans Délai</h2>
+      <p class="ch-lead">MuleSoft fait passer les signaux Risk et Performance vers Distribution — sans mail, sans attente du reporting mensuel.</p>
+      <p>Le Golden Record existe, mais la donnée reste dans les systèmes fermés. MuleSoft est la couche d'orchestration qui capte les événements en quasi temps réel et la propage entre les systèmes et notamment Salesforce et Data 360 — sans que le département Risk ou Investissement n'aient à changer leurs interfaces.</p>
+      <h3>Les deux flux critiques</h3>
+      <ol class="steps">
+        <li><div class="sn">1</div><div class="sb"><strong>Flux Risk → Salesforce</strong><span>Dès que Léa consigne la surveillance renforcée, MuleSoft capte l'événement. Le statut du fonds est poussé vers Data 360 en quelques minutes. Lundi 9h02.</span></div></li>
+        <li><div class="sn">2</div><div class="sb"><strong>Flux Investissement → Salesforce</strong><span>Le reporting mensuel n'attend plus la fin du mois : la donnée de performance est intégrée dès disponibilité, certifiée par Informatica. Lundi 14h05.</span></div></li>
+        <li><div class="sn">3</div><div class="sb"><strong>Intégration bidirectionnelle</strong><span>MuleSoft orchestre aussi les retours : confirmations vers Risk, traçabilité des décisions prises dans Salesforce, mises à jour dépositaire.</span></div></li>
+      </ol>
+    </div>
+
+    <!-- Ch5 -->
+    <div class="ch" id="ch5" data-chapter="5">
+      <div class="ch-num">Chapitre 5</div>
+      <span class="ch-label lbl-trust">Fiabiliser</span>
+      <h2>La Donnée Certifiée &amp; Gouvernée</h2>
+      <p class="ch-lead">Rendre la donnée produit exploitable pour les équipes et les agents IA — sans traitement manuel, sans risque d'erreur.</p>
+      <ul>
+        <li><strong>Catalogue de données (gouvernance)</strong><br>Chaque donnée produit — comme la VNI — a une fiche d'identité claire : ce qu'elle signifie précisément, d'où elle vient (son historique de transformation), et qui en est responsable. Fini le doute classique : « cette VNI, elle vient d'où et qui l'a calculée ? »</li>
+        <li><strong>Intégration des données (connexion)</strong><br>Des connecteurs prêts à l'emploi (sans développement lourd) relient les systèmes sources — Risk, gestion d'actifs (Investissement), fournisseurs de données de marché comme Bloomberg — vers les plateformes data centrales (par ex. Snowflake), avec un traitement optimisé au plus près de la donnée pour rester performant même à grand volume.</li>
+        <li><strong>Qualité des données (contrôle)</strong><br>Avant qu'une performance, une VaR ou un encours n'arrive sur un dashboard vu par Distribution ou Risk, la donnée est vérifiée et validée — cohérence, exactitude, fraîcheur — pour éviter qu'une erreur ou une donnée obsolète ne remonte jusqu'au commercial ou à l'analyste risque.</li>
+      </ul>
+      <div class="keryan">
+        <div class="kh">💡 L'insight sur Data Platforms</div>
+        <p>« Le catalogue donne la confiance, l'intégration donne la vitesse, la qualité donne la fiabilité — ensemble, ils préparent dans les Data Platforms (Snowflake) une VNI, une VaR et un encours de 840M€ enfin fiables et traçables, que Data 360 vient ensuite activer dans Salesforce sous forme d'insight exploitable pour les 47 clients concernés — sans traitement manuel ni risque d'erreur, pour les équipes Distribution et Risk comme pour les futurs agents Agentforce. »</p>
+      </div>
+    </div>
+
+    <!-- Ch6 -->
+    <div class="ch" id="ch6" data-chapter="6">
+      <div class="ch-num">Chapitre 6</div>
+      <span class="ch-label lbl-activate">Activer</span>
+      <h2>Profil Produit × Profil Client</h2>
+      <p class="ch-lead">Data 360 construit le contexte décisionnel — statut Risk, performance et encours clients réunis dans un profil produit unifié.</p>
+      <p>Data 360 ne stocke pas les flux de Risk, Investissement et Distribution côte à côte — il construit un <strong>Profil Produit unifié</strong> (sans dupliquer les données sources) et le croise avec les <strong>Profils Clients</strong> déjà présents dans Salesforce. Résultat : un seul endroit où le commercial, l'analyste Risk et demain un agent IA voient exactement la même vérité sur un fonds.</p>
+      <ul>
+        <li><strong>Statut Risk temps réel :</strong> 🟡 Sous surveillance renforcée depuis le 15/09, VaR +35bps vs seuil</li>
+        <li><strong>Performance certifiée :</strong> -1,2% vs benchmark sur 1 mois, réconciliée par Informatica</li>
+        <li><strong>Concentration d'encours :</strong> 840M€ détenus par 47 clients dont 12 institutionnels stratégiques</li>
+        <li><strong>Alternatives prêtes à proposer :</strong> Deux fonds de profil similaire, non flaggés — NIM Oblig. Corporate IG et NIM Oblig. Court Terme — identifiés automatiquement comme substituts</li>
+        <li><strong>Opportunité de multi-équipement :</strong> Parmi les 47 clients détenteurs, Data 360 identifie ceux dont le profil de risque les rend éligibles à d'autres fonds de la gamme NIM/affiliés qu'ils ne détiennent pas encore — l'arbitrage défensif devient aussi l'occasion de proposer un équipement complémentaire, plutôt qu'un simple remplacement à l'identique.</li>
+        <li><strong>Valeur pour le service client :</strong> le commercial dispose instantanément d'une réponse cohérente et argumentée — statut, impact et alternative — ce qui transforme un appel potentiellement délicat en une conversation de confiance, propice à proposer naturellement un complément d'équipement.</li>
+        <li><strong>Cohérence multi-org / multi-pays :</strong> que le client soit géré depuis une organisation Salesforce française, luxembourgeoise ou toute autre entité du groupe Natixis IM à l'international, le Golden Record garantit la même vérité produit partout — pas de version différente du statut Risk selon le pays qui consulte.</li>
+      </ul>
+      <div class="keryan">
+        <div class="kh">✓ Profil d'activation du NIM Obligataire Flexible</div>
+        <p>Statut Risk + performance + encours clients — unifiés dans <strong style="color:#C8A328">UUID : NOF-2024 → FR0014-NIM-001.</strong> Disponible instantanément pour les commerciaux, les dashboards Risk et Agentforce.</p>
+      </div>
+    </div>
+
+    <!-- Ch7 -->
+    <div class="ch" id="ch7" data-chapter="7">
+      <div class="ch-num">Chapitre 7</div>
+      <span class="ch-label lbl-activate">Activer</span>
+      <h2>La Protection &amp; la Croissance</h2>
+      <p class="ch-lead">Data 360 utilise le Profil Produit pour agir — protéger les clients exposés et identifier les opportunités — et la rend accessible à Agentforce pour gagner en efficacité et productivité.</p>
+      <p>Mardi matin. Le commercial ouvre la fiche du CGP dans Salesforce. Un agent Agentforce a déjà préparé le contexte depuis le Profil Produit unifié.</p>
+      <ol class="steps">
+        <li><div class="sn">1</div><div class="sb"><strong>Badge Risk visible</strong><span>🟡 Sous surveillance renforcée depuis le 15/09, VaR +35bps, -1,2% vs benchmark. En un coup d'œil, le commercial sait.</span></div></li>
+        <li><div class="sn">2</div><div class="sb"><strong>Recommandation d'arbitrage</strong><span>Data 360 a croisé le profil du client avec les fonds non flaggés : NIM Oblig. Corporate IG recommandé, même catégorie, rendement similaire.</span></div></li>
+        <li><div class="sn">3</div><div class="sb"><strong>Signal de croissance</strong><span>Un autre client ne détient qu'1 fonds NIM sur 5 éligibles à son profil — aucun sous surveillance. Opportunité de multi-équipement remontée automatiquement.</span></div></li>
+        <li><div class="sn">4</div><div class="sb"><strong>Tâche générée automatiquement</strong><span>Dès que le statut passe 🟡, Agentforce crée une tâche Salesforce pour chaque commercial ayant une opportunité ouverte ou un client détenteur — plus besoin d'attendre qu'un humain pense à vérifier qui est concerné.</span></div></li>
+        <li><div class="sn">5</div><div class="sb"><strong>Séquence de contact priorisée</strong><span>Agentforce classe les 47 clients détenteurs par urgence (montant exposé, statut institutionnel) et propose une séquence d'appels — les 12 institutionnels stratégiques en premier, avant que le client n'appelle lui-même.</span></div></li>
+        <li><div class="sn">6</div><div class="sb"><strong>Email / brief pré-rédigé</strong><span>Un brouillon de mail ou de script d'appel est généré automatiquement à partir du profil produit — le commercial n'a plus qu'à personnaliser, pas à rédiger depuis zéro sous pression.</span></div></li>
+        <li><div class="sn">7</div><div class="sb"><strong>Alerte de désescalade automatique</strong><span>Si le statut Risk repasse au vert, Agentforce notifie automatiquement les commerciaux alertés — pour clore la boucle sans intervention manuelle et éviter de continuer à sur-communiquer un risque qui n'existe plus.</span></div></li>
+        <li><div class="sn">8</div><div class="sb"><strong>Reporting consolidé pour le management</strong><span>Agentforce génère un résumé hebdomadaire agrégé (fonds sous surveillance, encours concernés, taux d'adoption des arbitrages proposés) sans que quiconque ait à compiler manuellement des données de trois systèmes.</span></div></li>
+      </ol>
+    </div>
+
+    <!-- Ch8 -->
+    <div class="ch" id="ch8" data-chapter="8">
+      <div class="ch-num">Chapitre 8</div>
+      <span class="ch-label lbl-activate">Activer</span>
+      <h2>La Boucle se Ferme</h2>
+      <p class="ch-lead">Risk coordonne avec Distribution, Investissement lance le bon produit — la donnée circule dans les deux sens.</p>
+      <p>Vendredi. Léa ouvre son tableau Risk : via MuleSoft et Data 360, elle voit la <strong>concentration d'encours par client institutionnel</strong>. 40% des 840M€ sont détenus par 12 comptes stratégiques. Un arrêt sec déclencherait des rachats en cascade.</p>
+      <ul>
+        <li><strong>Coordination Risk × Distribution :</strong> plan d'arbitrage progressif sur 10 jours, client par client, sans incident</li>
+        <li><strong>Signal ESG agrégé :</strong> 70% des clients arbitrés cherchaient une exposition ESG absente de la gamme actuelle</li>
+        <li><strong>Lancement NIM Oblig. Flexible ESG :</strong> 4 mois plus tard — 18 institutionnels, 340M€ souscrits dès J+30</li>
+      </ul>
+      <div class="keryan">
+        <div class="kh">🌐 La boucle complète</div>
+        <p><strong style="color:#C8A328">Informatica</strong> garantit l'identité — même fonds, même référentiel dans les trois systèmes.</p>
+        <p><strong style="color:#C8A328">MuleSoft</strong> transporte les signaux — sans mail, sans délai de 72h.</p>
+        <p><strong style="color:#C8A328">Data 360</strong> croise et active — protection client, croissance et innovation produit pilotées par la donnée.</p>
+      </div>
+
+      <div style="margin-top:40px;padding-top:32px;border-top:1px solid #eee;text-align:center">
+        <div style="font-size:1rem;font-style:italic;color:#555;line-height:1.7;max-width:400px;margin:0 auto 24px">
+          « La donnée de confiance crée le contexte.<br>
+          Le contexte permet aux équipes d'agir ensemble.<br>
+          Sans confiance, la coordination amplifie les erreurs. »
+        </div>
+        <div style="font-size:.8rem;color:#aaa">
+          Propulsé par Informatica · Salesforce Data 360 · MuleSoft
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /story-panel -->
+
+  <!-- ═══ RIGHT: STICKY DIAGRAM ═══ -->
+  <div class="diagram-panel" id="diagram-panel">
+    <div style="position:relative;width:100%;height:100%;overflow-y:auto;padding:20px 24px">
+      <div class="dg-chapter-label" id="dg-ch-label">Chapitre 1</div>
+      <div id="diagram-root">
+        <!-- Diagram content injected by JS -->
+      </div>
+    </div>
+  </div>
+
+</div><!-- /layout -->
+
+<script>
+// ── PASSWORD GATE ────────────────────────────────────────────────────────────
+function checkPw() {
+  const val = document.getElementById('pw-input').value;
+  const err = document.getElementById('pw-error');
+  const inp = document.getElementById('pw-input');
+  if (val === 'NIM2026') {
+    document.getElementById('pw-gate').classList.add('hidden');
+    err.textContent = '';
+  } else {
+    inp.classList.add('error');
+    err.textContent = 'Mot de passe incorrect — réessayez.';
+    setTimeout(() => inp.classList.remove('error'), 400);
+  }
+}
+
+// ── TABLE FILTER ─────────────────────────────────────────────────────────────
+function filterValeurTable(q) {
+  const rows = document.querySelectorAll('#valeur-table tbody tr');
+  const lq = q.toLowerCase();
+  rows.forEach(r => {
+    r.style.display = r.textContent.toLowerCase().includes(lq) ? '' : 'none';
+  });
+}
+
+// ── TAB NAVIGATION ───────────────────────────────────────────────────────────
+function switchTab(tab) {
+  const intro = document.getElementById('intro');
+  const layout = document.querySelector('.layout');
+  const valeur = document.getElementById('valeur-page');
+  const tabStory = document.getElementById('tab-story');
+  const tabValeur = document.getElementById('tab-valeur');
+  if (tab === 'story') {
+    intro.style.display = '';
+    layout.style.display = '';
+    valeur.style.display = 'none';
+    tabStory.classList.add('active');
+    tabValeur.classList.remove('active');
+  } else {
+    intro.style.display = 'none';
+    layout.style.display = 'none';
+    valeur.style.display = 'block';
+    tabStory.classList.remove('active');
+    tabValeur.classList.add('active');
+  }
+}
+
+// ── DIAGRAM HELPERS ─────────────────────────────────────────────────────────
+
+const NIM_SOURCES = [
+  ['🛡️','Risk Analytics','VaR, surveillance','RK-NOF-001'],
+  ['📈','Asset Mgmt','Performance, NAV','AM-NOF-412'],
+  ['☁️','Salesforce CRM','Clients, activité','SF-FOND-078'],
+  ['📊','Bloomberg','Données marché','BLP-FR014'],
+  ['💼','Dépositaire','Encours, custody','DEP-2890'],
+  ['🗃️','Référentiel','Données produit','REF-1956'],
+];
+
+function srcCardH(icon, name, holds, id, golden) {
+  return `<div class="sc-h">
+    <div class="sch-head"><span class="sch-name">${name}</span><span style="font-size:.8rem">${icon}</span></div>
+    <div class="sch-row sch-holds">${holds}</div>
+    <div class="sch-row sch-id">${id}</div>
+    ${golden ? `<div class="sch-row sch-eid">FR0014-NIM-001</div>` : ''}
+  </div>`;
+}
+
+function sourcesRow(golden) {
+  return `<div class="src-row">${NIM_SOURCES.map(s => srcCardH(s[0],s[1],s[2],s[3],golden)).join('')}</div>`;
+}
+
+function mulesoftSection(active, fabric) {
+  return `<div class="sec-box app-int${active ? '' : ' ghost'}">
+    <div class="sec-header"><span class="sec-dot" style="background:#E65100"></span>APP INTEGRATION</div>
+    <div class="mule-sec">
+      <div style="font-size:1.6rem">🔗</div>
+      <div class="mule-name-lg">MuleSoft</div>
+      <div class="mule-sub-lg">Orchestration &amp; API</div>
+      ${fabric ? `<div class="mule-fabric">
+        <div style="font-size:.6rem;font-weight:800;color:#BF360C;margin-bottom:4px">Enterprise Agent Fabric</div>
+        <div style="font-size:.58rem;color:#555;line-height:1.6">· Catalogue MCP Servers &amp; Agents<br>· Gouvernance Auth, scopes, audits<br>· Super Agent unifié</div>
+      </div>` : ''}
+    </div>
+  </div>`;
+}
+
+function informaticaSection(toolsActive, mdmActive) {
+  const steps = [['📥','Ingestion','Smart Map'],['🧹','Nettoyage','Qualité'],['🔗','Déduplication','IA / ML'],['⚖️','Survivance','Confiance']];
+  return `<div class="sec-box data-mgmt">
+    <div class="sec-header">
+      <span class="sec-dot" style="background:#E65100"></span>Data Management
+      ${mdmActive ? `<span class="mdm-pill">MDM Hub</span>` : ''}
+    </div>
+    <div class="dm-inner">
+      <div class="dm-left${toolsActive ? '' : ' ghost'}">
+        ${[['DATA CATALOG','Scan &amp; Découverte'],['DATA INTEGRATION','ETL / ELT'],['DATA QUALITY','Nettoyage &amp; Règles']].map(t =>
+          `<div class="info-tool-card"><div class="itc-name">${t[0]}</div><div class="itc-sub">${t[1]}</div></div>`
+        ).join('')}
+      </div>
+      <div class="dm-right${mdmActive ? '' : ' ghost'}">
+        <div style="font-size:.62rem;font-weight:700;color:#6B2FA0;margin-bottom:5px">Hub MDM — CLAIRE AI</div>
+        ${steps.map(s => `<div class="mdm-step-v">
+          <span style="font-size:.82rem;flex-shrink:0">${s[0]}</span>
+          <div><div class="msv-name">${s[1]}</div><div class="msv-sub">${s[2]}</div></div>
+        </div>`).join('')}
+        ${mdmActive ? `<div class="golden-bar"><div class="gb-label-sm">Référentiel Doré ✓</div><div class="gb-id-sm">FR0014-NIM-001</div></div>` : ''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function analyticsSection(active) {
+  return `<div class="sec-box analytics${active ? '' : ' ghost'}">
+    <div class="sec-header"><span class="sec-dot" style="background:#00695C"></span>ANALYTICS &amp; SHARE</div>
+    <div class="an-inner">
+      <div class="dp-card-sm">
+        <div style="font-size:.56rem;color:#bbb;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px">Data Platforms</div>
+        <div style="display:flex;gap:5px;align-items:center">
+          <span style="font-size:.9rem">❄️</span>
+          <span style="background:#C00;color:#fff;border-radius:2px;padding:1px 3px;font-weight:900;font-size:.6rem">SF</span>
+        </div>
+        <div style="font-size:.58rem;color:#888;margin-top:3px">Zero Copy</div>
+        <div class="dpc-id">FR0014-NIM-001</div>
+      </div>
+      <div class="dp-card-sm" style="margin-top:5px">
+        <div style="font-size:.9rem;margin-bottom:2px">⚙️</div>
+        <div style="font-size:.7rem;font-weight:700">Tableau</div>
+        <div style="font-size:.58rem;color:#888;margin-top:2px">Visualisation &amp; BI</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function identityGraph() {
+  const nodes = [
+    {icon:'🛡️',id:'RK-NOF-001',left:'3%',top:'8%',cx:'10%',cy:'18%'},
+    {icon:'📈',id:'AM-NOF-412',left:'72%',top:'8%',cx:'79%',cy:'18%'},
+    {icon:'☁️',id:'SF-FOND-078',left:'0%',top:'45%',cx:'8%',cy:'55%'},
+    {icon:'📊',id:'BLP-FR014',left:'79%',top:'45%',cx:'87%',cy:'55%'},
+    {icon:'💼',id:'DEP-2890',left:'12%',top:'76%',cx:'20%',cy:'84%'},
+    {icon:'🗃️',id:'REF-1956',left:'70%',top:'76%',cx:'77%',cy:'84%'},
+  ];
+  return `<div style="position:relative;width:100%;height:190px">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible" pointer-events="none">
+      ${nodes.map(n => `<line x1="50%" y1="50%" x2="${n.cx}" y2="${n.cy}" stroke="#ddd" stroke-width="1.5" stroke-dasharray="5,3"/>`).join('')}
+    </svg>
+    ${nodes.map(n => `<div style="position:absolute;left:${n.left};top:${n.top};background:#fff;border:1px solid #ddd;border-radius:5px;padding:3px 5px;text-align:center;min-width:50px;z-index:2">
+      <div style="font-size:.75rem">${n.icon}</div>
+      <div style="font-size:.5rem;color:#C8A328;margin-top:1px">${n.id}</div>
+    </div>`).join('')}
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      width:86px;height:86px;border-radius:50%;background:#1E0E4E;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      color:#fff;text-align:center;z-index:3;box-shadow:0 0 22px rgba(30,14,78,.25)">
+      <div style="font-size:.42rem;color:#C8A328;font-weight:800;letter-spacing:.06em;text-transform:uppercase">Golden Record</div>
+      <div style="font-size:.65rem;font-weight:800;line-height:1.2">NIM Oblig.<br>Flexible</div>
+      <div style="font-size:.42rem;color:rgba(255,255,255,.45);margin-top:1px">UUID: NOF-2024</div>
+      <div style="font-size:.42rem;color:#C8A328;font-weight:700;margin-top:3px;background:rgba(200,163,40,.15);padding:1px 5px;border-radius:3px">FR0014-NIM-001</div>
+    </div>
+  </div>`;
+}
+
+function data360Section() {
+  return `<div class="d360-sec">
+    <div class="d360-header">
+      <span style="font-size:.9rem">☁️</span>
+      <span class="d360-label">Data 360</span>
+      <span class="d360-desc">Data 360 croise le Profil Produit (statut Risk + performance) avec les Profils Clients — pour activer protection et croissance commerciale.</span>
+    </div>
+    <div style="padding:14px 18px">${identityGraph()}</div>
+  </div>`;
+}
+
+function agentforceSection() {
+  return `<div class="af-sec" style="margin-top:24px">
+    <div class="af-header">
+      <span style="font-size:.85rem">🤖</span>
+      <span class="af-label">Agentforce</span>
+    </div>
+    <div class="af-inner">
+      <div class="af-engine">
+        <span style="font-size:1rem">🧠</span>
+        <span style="font-size:.65rem;color:#bbb;margin:0 4px">—</span>
+        <span style="font-size:.85rem">🔒</span>
+        <span class="afe-name" style="margin-left:5px">Moteur Atlas</span>
+        <span class="afe-trust">MiFID II · RGPD · LCB-FT</span>
+      </div>
+      <div class="sf-apps-label">SALESFORCE CUSTOMER 360 APPS</div>
+      <div class="sf-apps">
+        <div class="sf-app">☁️ Ventes</div>
+        <div class="sf-app">🎧 Service</div>
+        <div class="sf-app">🎯 Marketing</div>
+        <div class="sf-app">🛒 Commerce</div>
+        <div class="sf-app">🧩 Autres</div>
+      </div>
+      <div class="channels">
+        <div class="ch-pill">🌐 Web</div>
+        <div class="ch-pill">💬 Chat</div>
+        <div class="ch-pill">📱 Mobile</div>
+        <div class="ch-pill">📞 Voix</div>
+        <div class="ch-pill">✉️ Email</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── DIAGRAM RENDER ──────────────────────────────────────────────────────────
+
+function renderDiagram(chapter) {
+  const root = document.getElementById('diagram-root');
+  const label = document.getElementById('dg-ch-label');
+  const labels = ['Intro','Chapitre 1','Chapitre 2','Chapitre 3',
+                  'Chapitre 4','Chapitre 5','Chapitre 6','Chapitre 7','Chapitre 8'];
+  label.textContent = labels[chapter] || 'Chapitre ' + chapter;
+
+  let html = '';
+
+  if (chapter <= 1) {
+    html += sourcesRow(false);
+    html += `<div class="mid-row">
+      ${mulesoftSection(false, false)}
+      ${informaticaSection(false, false)}
+      ${analyticsSection(false)}
+    </div>`;
+  } else if (chapter === 2) {
+    html += sourcesRow(false);
+    html += `<div class="mid-row">
+      ${mulesoftSection(false, false)}
+      ${informaticaSection(false, true)}
+      ${analyticsSection(false)}
+    </div>`;
+  } else if (chapter === 3) {
+    html += sourcesRow(true);
+    html += `<div class="mid-row">
+      ${mulesoftSection(false, false)}
+      ${informaticaSection(false, true)}
+      ${analyticsSection(true)}
+    </div>`;
+  } else if (chapter === 4) {
+    html += sourcesRow(true);
+    html += `<div class="mid-row">
+      ${mulesoftSection(true, false)}
+      ${informaticaSection(false, false)}
+      ${analyticsSection(false)}
+    </div>`;
+  } else if (chapter === 5) {
+    html += sourcesRow(true);
+    html += `<div class="mid-row">
+      ${mulesoftSection(false, false)}
+      ${informaticaSection(true, true)}
+      ${analyticsSection(true)}
+    </div>`;
+  } else if (chapter === 6) {
+    html += sourcesRow(true);
+    html += `<div class="mid-row">
+      ${mulesoftSection(true, false)}
+      ${informaticaSection(true, true)}
+      ${analyticsSection(true)}
+    </div>`;
+    html += data360Section();
+  } else {
+    html += sourcesRow(true);
+    html += `<div class="mid-row">
+      ${mulesoftSection(chapter === 8, chapter === 8)}
+      ${informaticaSection(true, true)}
+      ${analyticsSection(true)}
+    </div>`;
+    html += `<div class="auto-zone">
+      <div class="auto-zone-label">Zone Autonome (Contexte + Action)</div>
+      ${data360Section()}
+      ${agentforceSection()}
+    </div>`;
+  }
+
+  root.innerHTML = html;
+  root.style.position = 'relative';
+  if (chapter >= 2) animateMDMSteps();
+  drawConnectors(chapter);
+}
+
+function animateMDMSteps() {
+  const steps = document.querySelectorAll('.mdm-step-v');
+  if (!steps.length) return;
+  if (window._mdmTimer) clearInterval(window._mdmTimer);
+  let i = 0;
+  window._mdmTimer = setInterval(() => {
+    steps.forEach(s => s.style.background = '');
+    if (steps[i % steps.length]) steps[i % steps.length].style.background = 'rgba(107,47,160,.1)';
+    i++;
+  }, 900);
+}
+
+// ── CONNECTORS ───────────────────────────────────────────────────────────────
+
+function drawConnectors(chapter) {
+  setTimeout(() => {
+    const root = document.getElementById('diagram-root');
+    if (!root) return;
+
+    const old = document.getElementById('conn-overlay');
+    if (old) old.remove();
+
+    const rr = root.getBoundingClientRect();
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.id = 'conn-overlay';
+    svg.setAttribute('width', root.offsetWidth);
+    svg.setAttribute('height', root.scrollHeight);
+    Object.assign(svg.style, {
+      position:'absolute', top:'0', left:'0',
+      pointerEvents:'none', overflow:'visible', zIndex:'8'
+    });
+
+    svg.innerHTML = `<defs>
+      <marker id="ah-o" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+        <path d="M0.5,1 L6,3.5 L0.5,6 Z" fill="#E65100"/></marker>
+      <marker id="ah-p" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+        <path d="M0.5,1 L6,3.5 L0.5,6 Z" fill="#6B2FA0"/></marker>
+      <marker id="ah-b" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+        <path d="M0.5,1 L6,3.5 L0.5,6 Z" fill="#1565C0"/></marker>
+      <marker id="ah-r" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+        <path d="M0.5,1 L6,3.5 L0.5,6 Z" fill="#BF360C"/></marker>
+      <marker id="ah-g" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+        <path d="M0.5,1 L6,3.5 L0.5,6 Z" fill="#bbb"/></marker>
+    </defs>`;
+
+    root.appendChild(svg);
+
+    function R(el) {
+      if (!el) return null;
+      const b = el.getBoundingClientRect();
+      return {
+        l: b.left - rr.left,  t: b.top  - rr.top,
+        r: b.right - rr.left, b: b.bottom - rr.top,
+        cx: b.left - rr.left + b.width / 2,
+        cy: b.top  - rr.top  + b.height / 2,
+        w: b.width, h: b.height
+      };
+    }
+
+    function addPath(d, stroke, dash, marker) {
+      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d', d);
+      p.setAttribute('stroke', stroke);
+      p.setAttribute('stroke-width', '1.5');
+      p.setAttribute('stroke-dasharray', dash || '5,4');
+      p.setAttribute('fill', 'none');
+      if (marker) p.setAttribute('marker-end', `url(#${marker})`);
+      svg.appendChild(p);
+    }
+
+    function addDot(cx, cy, r, fill, stroke) {
+      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r || 3);
+      c.setAttribute('fill', fill || '#fff');
+      c.setAttribute('stroke', stroke || '#bbb');
+      c.setAttribute('stroke-width', '1.5');
+      svg.appendChild(c);
+    }
+
+    // Bus: each source drops to a shared horizontal rail, then single descent to target
+    function drawBus(cards, target, color, markerEnd) {
+      const rects = cards.map(c => R(c)).filter(Boolean);
+      if (!rects.length || !target) return;
+      const busY  = target.t - 16;
+      const leftX = rects[0].cx;
+      const rightX = rects[rects.length - 1].cx;
+      rects.forEach(cr => {
+        addDot(cr.cx, cr.b + 5, 3, color, color);
+        addPath(`M${cr.cx},${cr.b + 8} L${cr.cx},${busY}`, color, '4,4');
+      });
+      addPath(`M${leftX},${busY} L${rightX},${busY}`, color, '4,4');
+      addDot(target.cx, busY, 4, '#F7F7F7', color);
+      addPath(`M${target.cx},${busY + 4} L${target.cx},${target.t - 2}`, color, '4,4', markerEnd);
+    }
+
+    // Horizontal section-to-section connector with entry dot
+    function hConn(from, to, yFrac, color, markerEnd) {
+      if (!from || !to) return;
+      const y = from.t + from.h * (yFrac != null ? yFrac : 0.5);
+      addDot(from.r + 4, y, 3, '#F7F7F7', color);
+      addPath(`M${from.r + 7},${y} L${to.l - 2},${y}`, color, '5,4', markerEnd);
+    }
+
+    // Vertical section-to-section connector
+    function vConn(from, to, color, markerEnd, xFrac) {
+      if (!from || !to) return;
+      const fx = from.l + from.w * (xFrac != null ? xFrac : 0.5);
+      addDot(fx, from.b + 5, 3, '#F7F7F7', color);
+      addPath(`M${fx},${from.b + 8} L${to.cx},${to.t - 2}`, color, '5,4', markerEnd);
+    }
+
+    const cards = Array.from(root.querySelectorAll('.sc-h'));
+    const dm = R(root.querySelector('.data-mgmt'));
+    const ai = R(root.querySelector('.app-int'));
+    const an = R(root.querySelector('.analytics'));
+    const d3 = R(root.querySelector('.d360-sec'));
+    const af = R(root.querySelector('.af-sec'));
+
+    // Ch1: stubs — data siloed, goes nowhere
+    if (chapter <= 1) {
+      cards.forEach(c => {
+        const cr = R(c); if (!cr) return;
+        addDot(cr.cx, cr.b + 4, 3, '#ddd', '#ddd');
+        addPath(`M${cr.cx},${cr.b + 7} L${cr.cx},${cr.b + 20}`, '#ddd', '3,3');
+      });
+      return;
+    }
+
+    // Ch2: bus sources → Data Management
+    if (chapter === 2 && dm) {
+      drawBus(cards, dm, '#E65100', 'ah-o');
+    }
+
+    // Ch3: bus → DM + DM → Analytics + write-back arcs to sources
+    if (chapter === 3 && dm) {
+      drawBus(cards, dm, '#E65100', 'ah-o');
+      if (an) hConn(dm, an, 0.65, '#6B2FA0', 'ah-p');
+      [0, 2, 4].forEach(idx => {
+        const cr = R(cards[idx]); if (!cr) return;
+        const midY = (dm.t + cr.b) / 2;
+        addPath(
+          `M${dm.l + 8},${dm.t - 2} C${dm.l - 22},${midY} ${cr.cx - 18},${midY} ${cr.cx},${cr.b + 2}`,
+          '#6B2FA0', '4,3', 'ah-p'
+        );
+      });
+    }
+
+    // Ch4: bus → App Integration + AI → DM
+    if (chapter === 4 && ai) {
+      drawBus(cards, ai, '#E65100', 'ah-o');
+      if (dm) hConn(ai, dm, 0.5, '#E65100', 'ah-o');
+    }
+
+    // Ch5: bus → DM + DM → Analytics
+    if (chapter === 5 && dm) {
+      drawBus(cards, dm, '#E65100', 'ah-o');
+      if (an) hConn(dm, an, 0.55, '#6B2FA0', 'ah-p');
+    }
+
+    // Ch6+: full pipeline
+    if (chapter >= 6 && dm) {
+      drawBus(cards, dm, '#E65100', 'ah-o');
+      // First source also splits to App Integration (grey branch)
+      if (ai && cards[0]) {
+        const cr = R(cards[0]);
+        if (cr) {
+          const busY = ai.t - 16;
+          addDot(cr.cx, cr.b + 5, 3, '#bbb', '#bbb');
+          addPath(`M${cr.cx},${cr.b + 8} L${cr.cx},${busY} L${ai.cx},${busY} L${ai.cx},${ai.t - 2}`,
+            '#bbb', '5,4', 'ah-g');
+        }
+      }
+      if (ai) hConn(ai, dm, 0.5, '#E65100', 'ah-o');
+      if (an) hConn(dm, an, 0.65, '#6B2FA0', 'ah-p');
+      if (d3) vConn(dm, d3, '#1565C0', 'ah-b', 0.5);
+      if (an && d3) {
+        const anR = an;
+        addDot(anR.cx, anR.b + 5, 3, '#F7F7F7', '#6B2FA0');
+        addPath(`M${anR.cx},${anR.b + 8} L${anR.cx},${d3.t - 16} L${d3.cx + d3.w * 0.28},${d3.t - 16} L${d3.cx + d3.w * 0.28},${d3.t - 2}`,
+          '#6B2FA0', '5,4', 'ah-p');
+      }
+    }
+
+    // Ch7-8: Data 360 → Agentforce
+    if (chapter >= 7 && d3 && af) {
+      vConn(d3, af, '#BF360C', 'ah-r', 0.5);
+    }
+
+  }, 80);
+}
+
+// ── SCROLL SPY ──────────────────────────────────────────────────────────────
+
+let currentChapter = 1;
+renderDiagram(1);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const ch = parseInt(e.target.dataset.chapter || '1');
+      if (ch !== currentChapter) {
+        currentChapter = ch;
+        renderDiagram(ch);
+        document.getElementById('hd-ch').textContent = ch === 0 ? 'Introduction' : 'Chapitre ' + ch;
+      }
+    }
+  });
+}, {threshold: 0.4});
+
+document.querySelectorAll('[data-chapter]').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
