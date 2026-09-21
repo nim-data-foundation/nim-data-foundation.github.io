@@ -680,25 +680,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
         <p>Le responsable Distribution l'apprend par mail, en copie d'une chaîne Risk ↔ Investissement. Il doit <strong style="color:#fff">rappeler deux clients</strong> à qui on vient de recommander un fonds sous surveillance.</p>
         <p>La direction pose la question : <em>« Comment a-t-on pu vendre ça alors que Risk le savait depuis lundi ? »</em></p>
       </div>
+      <p style="margin-top:18px;font-style:italic;color:#666;font-size:.88rem">Le vrai enjeu n'est pas de faire arriver l'alerte plus vite dans une boîte mail — c'est que Distribution n'ait jamais à la chercher.</p>
     </div>
 
     <!-- Ch2 -->
     <div class="ch" id="ch2" data-chapter="2">
       <div class="ch-num">Chapitre 2</div>
       <span class="ch-label lbl-trust">Fiabiliser</span>
-      <h2>Un Fonds, Une Identité</h2>
-      <p class="ch-lead">Informatica garantit que les départements Risk, Investissement et Distribution parlent exactement du même fonds.</p>
-      <p>Avant d'intégrer les données, il faut résoudre un problème fondamental : chaque système identifie le fonds différemment. Ce <strong>« golden » Référentiel Produit</strong> est la fondation — sans lui, intégrer des données revient à connecter des références qui ne correspondent pas.</p>
-      <h3>Pipeline CLAIRE AI — 4 étapes</h3>
+      <h2>Un Fonds, Une Vérité Documentée</h2>
+      <p class="ch-lead">Informatica ne réconcilie pas des identifiants — il documente et gouverne ceux qui existent déjà.</p>
+      <p>Chez Natixis IM, un fonds est déjà identifié de façon fiable dans tous les systèmes grâce à des standards établis : <strong>ISIN, LEI, référentiel Demeter</strong>. Le vrai enjeu n'est pas de faire correspondre des codes différents — c'est de garantir que chaque attribut du fonds (catégorie AMF, benchmark officiel, seuil VaR contractuel) est documenté, tracé, et rattaché à un propriétaire clair, disponible pour tous les systèmes qui en ont besoin.</p>
+      <h3>Ce que le Golden Record apporte concrètement</h3>
       <ol class="steps">
-        <li><div class="sn">1</div><div class="sb"><strong>Ingestion — Mapping intelligent</strong><span>CLAIRE identifie les attributs produit dans chaque système (ISIN, code interne, libellé) et les mappe vers un modèle canonique fonds NIM.</span></div></li>
-        <li><div class="sn">2</div><div class="sb"><strong>Nettoyage &amp; Enrichissement</strong><span>Normalisation des libellés, validation ISIN, enrichissement avec classification AMF, benchmark officiel et caractéristiques réglementaires.</span></div></li>
-        <li><div class="sn">3</div><div class="sb"><strong>Déduplication — IA &amp; ML</strong><span>RK-NOF-001, AM-NOF-412 et SF-FOND-078 reconnus comme le même fonds malgré des codes différents.</span></div></li>
-        <li><div class="sn">4</div><div class="sb"><strong>Cadre de Confiance</strong><span>ISIN de référence, catégorie AMF, seuil VaR contractuel — les attributs de référence survivent depuis la source la plus fiable.</span></div></li>
+        <li><div class="sn">1</div><div class="sb"><strong>Fiche d'identité complète</strong><span>Chaque attribut du fonds NIM Obligataire Flexible (ISIN FR0014-NIM-001, catégorie AMF, benchmark, seuil VaR) a une définition claire et un propriétaire identifié.</span></div></li>
+        <li><div class="sn">2</div><div class="sb"><strong>Traçabilité (lignage)</strong><span>On sait toujours d'où vient chaque donnée et à quel moment elle a été mise à jour — plus de doute du type « cette VNI, elle vient d'où ? »</span></div></li>
+        <li><div class="sn">3</div><div class="sb"><strong>Disponibilité immédiate</strong><span>Ces attributs certifiés sont exposés aux systèmes Risk, Investissement et Salesforce sans ressaisie ni traitement manuel.</span></div></li>
+        <li><div class="sn">4</div><div class="sb"><strong>Cadre de Confiance</strong><span>La plateforme est le garant technique de la complétude et de la fraîcheur des données — pas un outil de validation métier manuel.</span></div></li>
       </ol>
       <div class="keryan">
         <div class="kh">✓ Le Golden Record du NIM Obligataire Flexible</div>
-        <p>Trois identifiants sources convergent vers un référentiel unique. <strong style="color:#C8A328">ISIN canonique : FR0014-NIM-001.</strong> Les départements Risk, Investissement et Distribution parlent désormais du même fonds avec certitude.</p>
+        <p>ISIN FR0014-NIM-001, documenté et gouverné — Risk, Investissement et Distribution s'appuient sur la même fiche d'identité produit, <strong style="color:#C8A328">déjà standardisée à la source, désormais gouvernée de bout en bout.</strong></p>
       </div>
     </div>
 
@@ -716,7 +717,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
       </ul>
       <div class="keryan">
         <div class="kh">✓ Après réécriture</div>
-        <p>Les trois systèmes référencent désormais le même produit. Quand Risk consigne une alerte sur RK-NOF-001, tout le monde sait que c'est <em>FR0014-NIM-001</em> — le NIM Obligataire Flexible.</p>
+        <p>Les trois systèmes référencent désormais le même produit. Quand Risk consigne une alerte sur ce fonds, Distribution et Investissement la reçoivent avec la même fiche d'identité produit — pas une version partielle ou différente.</p>
       </div>
     </div>
 
